@@ -15,7 +15,7 @@ export interface ngo{
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const getNgoUrl = 'https://nirgapfsz5.execute-api.ap-south-1.amazonaws.com/dev/ngo/getAllNGO';
+const getNgoUrl = 'https://h5qk7d3pm1.execute-api.ap-south-1.amazonaws.com/dev/ngo/getAllNGO';
 
 @Injectable({
   providedIn: 'root'
@@ -26,13 +26,8 @@ export class NgoService {
   constructor(  private http: HttpClient) { 
      
   }
-
-  body = {
-    "city" : "Bengaluru"
-  };
-
-  getAllNGO(): Observable<any>{
-    return this.http.post<any>(getNgoUrl,this.body,httpOptions);
+  getAllNGO(body): Observable<any>{
+    return this.http.post<any>(getNgoUrl,body,httpOptions);
   
   }
 }

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
-export interface User {
+
+export interface NgoName {
   name: string;
 }
 
@@ -14,31 +15,33 @@ export interface User {
 })
 export class AppComponent {
   title = 'NgoMato';
-  cities = ['Bangalore', 'Mumbai', 'Hyderabad'];
-  selectedCity = 'Bangalore'; //default 
+  cities = ['Bengaluru', 'Mumbai', 'Hyderabad'];
+  selectedCity = 'Bengaluru'; //default 
+
+  ngoNameList : string[];
 
   myControl = new FormControl();
-  options: User[] = [
-    {name: 'Mary'},
-    {name: 'Shelley'},
-    {name: 'Igor'}
-  ];
-  filteredOptions: Observable<User[]>;
+  options: NgoName[] = [];
+  filteredOptions: Observable<NgoName[]>;
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
-        startWith<string | User>(''),
+        startWith<string | NgoName>(''),
         map(value => typeof value === 'string' ? value : value.name),
         map(name => name ? this._filter(name) : this.options.slice())
       );
   }
-
-  displayFn(user?: User): string | undefined {
-    return user ? user.name : undefined;
+  getNgoNames(event){
+    console.log(event,"ngonameslist");
+    this.options = event
   }
 
-  private _filter(name: string): User[] {
+  displayFn(NgoName?: NgoName): string | undefined {
+    return NgoName ? NgoName.name : undefined;
+  }
+
+  private _filter(name: string): NgoName[] {
     const filterValue = name.toLowerCase();
 
     return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);

@@ -8,8 +8,8 @@
 
       <mat-toolbar-row>
           <mat-form-field>
-              <mat-select [(value)]="selectedCity" >
-                <mat-option *ngFor="let city of cities" [value]="city">
+              <mat-select [(value)]="selectedCity" (selectionChange)="getCity()">
+                <mat-option *ngFor="let city of cities" [value]="city" >
                   {{city}}
                 </mat-option>
               </mat-select>
@@ -28,4 +28,4 @@
       </mat-toolbar-row>
 </mat-toolbar>
 
-<app-ngo-list></app-ngo-list>
+<app-ngo-list  [citySelected]="selectedCity"  (ngoNames)="getNgoNames($event)" ></app-ngo-list>
