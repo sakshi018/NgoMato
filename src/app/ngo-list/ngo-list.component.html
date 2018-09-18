@@ -1,130 +1,26 @@
-<div class="container">
-    <div class="row">
+<div>
+  <mat-grid-list cols="3" rowHeight="600">
+    <mat-grid-tile *ngFor="let ngo of ngoViewModel">
       <div class="col-md">
-          <mat-card class="example-card">
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>PETA</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-              </mat-card-header>
-              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-              <mat-card-content>
-                <p>
-                  The S4hiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                  A small, agile dog that copes very well with muntainous terrain, the Shiba Inu was originally
-                  bred for hunting.
-                </p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button>Donate Now</button>
-              </mat-card-actions>
-            </mat-card>
+        <mat-card class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ngo.name}}</mat-card-title>
+            <mat-card-subtitle>{{ngo.description}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <p>
+              <li *ngFor="let requirement of ngo.requirements">
+                {{requirement}}
+              </li>
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>Donate Now</button>
+          </mat-card-actions>
+        </mat-card>
       </div>
-      <div class="col-md">
-          <mat-card class="example-card">
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>PETA</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-              </mat-card-header>
-              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-              <mat-card-content>
-                <p>
-                  The S4hiba Inu is the mdallest of the six original and distinct spitz breeds of dog from Japan.
-                  A mdall, agile dog that copes very well with muntainous terrain, the Shiba Inu was originally
-                  bred for hunting.
-                </p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button>Donate Now</button>
-              </mat-card-actions>
-            </mat-card>
-      </div>
-      <div class="col-md">
-          <mat-card class="example-card">
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>PETA</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-              </mat-card-header>
-              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-              <mat-card-content>
-                <p>
-                  The S4hiba Inu is the mdallest of the six original and distinct spitz breeds of dog from Japan.
-                  A mdall, agile dog that copes very well with muntainous terrain, the Shiba Inu was originally
-                  bred for hunting.
-                </p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button>Donate Now</button>
-              </mat-card-actions>
-            </mat-card>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md">
-          <mat-card class="example-card">
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>PETA</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-              </mat-card-header>
-              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-              <mat-card-content>
-                <p>
-                  The S4hiba Inu is the mdallest of the six original and distinct spitz breeds of dog from Japan.
-                  A mdall, agile dog that copes very well with muntainous terrain, the Shiba Inu was originally
-                  bred for hunting.
-                </p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button>Donate Now</button>
-              </mat-card-actions>
-            </mat-card>
-      </div>
-      <div class="col-md">
-          <mat-card class="example-card">
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>PETA</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-              </mat-card-header>
-              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-              <mat-card-content>
-                <p>
-                  The S4hiba Inu is the mdallest of the six original and distinct spitz breeds of dog from Japan.
-                  A mdall, agile dog that copes very well with muntainous terrain, the Shiba Inu was originally
-                  bred for hunting.
-                </p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button>Donate Now</button>
-              </mat-card-actions>
-            </mat-card>
-      </div>
-      <div class="col-md">
-          <mat-card class="example-card">
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>PETA</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-              </mat-card-header>
-              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-              <mat-card-content>
-                <p>
-                  The S4hiba Inu is the mdallest of the six original and distinct spitz breeds of dog from Japan.
-                  A mdall, agile dog that copes very well with muntainous terrain, the Shiba Inu was originally
-                  bred for hunting.
-                </p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button>Donate Now</button>
-              </mat-card-actions>
-            </mat-card>
-      </div>
-    </div>
-  </div>
-
-
-
-
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
