@@ -7,6 +7,7 @@ export class Ngo {
     email: string;//TODO check for any other appropriate type, have to make linkable
     name: string;
     requirements: string[];
+    imageId: string;
 
     Ngo() {//default const.
 

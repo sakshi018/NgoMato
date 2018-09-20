@@ -1,6 +1,6 @@
 <div>
   <mat-grid-list cols="3" rowHeight="600">
-    <mat-grid-tile *ngFor="let ngo of ngoViewModel">
+    <mat-grid-tile *ngFor="let ngo of ngoViewModel" (click)="openNgoCard(ngo)">
       <div class="col-md">
         <mat-card class="example-card">
           <mat-card-header>
@@ -8,7 +8,7 @@
             <mat-card-title>{{ngo.name}}</mat-card-title>
             <mat-card-subtitle>{{ngo.description}}</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Image not available">
           <mat-card-content>
             <p>
               <li *ngFor="let requirement of ngo.requirements">

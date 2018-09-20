@@ -9,11 +9,13 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatGridListModule } from '@angular/material';
 import { NgoListComponent } from './ngo-list/ngo-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgoViewComponent } from './ngo-view/ngo-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NgoListComponent,
+    NgoViewComponent,
   ],
   imports: [
     BrowserModule,

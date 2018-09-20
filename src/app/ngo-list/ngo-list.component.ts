@@ -16,6 +16,7 @@ export class NgoListComponent implements OnInit {
 
   @Input() citySelected: string;
   @Output() ngoNames: EventEmitter<any> = new EventEmitter();
+  @Output() ngoSelected: EventEmitter<any> = new EventEmitter();
   ngoAvailable: any[];
   responseData: any = [];
   ngoViewModel: Ngo[];
@@ -56,6 +57,7 @@ export class NgoListComponent implements OnInit {
       this.ngoViewModel = [];
       for (let i = 0; i < this.responseData.length; i++) {
         let ngo: Ngo = this.getNewNgo(this.responseData[i]);
+        ngo.imageId = "//d:/ngomato/NgoMato/src/app/shared/images/"+i+1+".jpg";
         this.ngoViewModel.push(ngo);
         let obj = { name: this.responseData[i]['name'] }
         this.ngoAvailable.push(obj);
@@ -78,5 +80,10 @@ export class NgoListComponent implements OnInit {
     return ngo;
   }
 
+  openNgoCard(ngo:Ngo){
+    //loading NgoPage
+    this.ngoSelected.emit(ngo);
+
+  }
 
 }

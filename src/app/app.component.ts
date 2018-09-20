@@ -2,6 +2,7 @@ import { Component, Output, Input, EventEmitter } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {Ngo} from './shared/ngo.class';
 
 
 export interface NgoName {
@@ -23,8 +24,11 @@ export class AppComponent {
   myControl = new FormControl();
   options: NgoName[] = [];
   filteredOptions: Observable<NgoName[]>;
+  loadNgoPage: Boolean;
+  loadNgoId: Ngo;
 
   ngOnInit() {
+    this.loadNgoPage = false;
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith<string | NgoName>(''),
@@ -33,8 +37,18 @@ export class AppComponent {
       );
   }
   getNgoNames(event){
-    console.log(event,"ngonameslist");
-    this.options = event
+
+    this.options = event;
+  }
+
+  loadNgo(event){
+    this.loadNgoPage = true;//one button to toggle between ngoList and ngoPage
+    this.loadNgoId = event;
+  }
+
+  ngoCitySearchedClicked(event){
+    console.log("Clciked!!");
+    this.loadNgoPage = false;
   }
 
   displayFn(NgoName?: NgoName): string | undefined {
