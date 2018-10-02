@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatGridListModule, MatIconModule, MatInput } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatGridListModule, MatIconModule, MatInput, MatTabsModule } from '@angular/material';
 import { NgoListComponent } from './ngo-list/ngo-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgoViewComponent } from './ngo-view/ngo-view.component';
@@ -34,8 +34,8 @@ import { LoginSignupComponent } from './login-signup/login-signup.component';
     MatButtonModule,
     MatGridListModule,
     HttpClientModule,
-    MatIconModule
-    
+    MatIconModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
