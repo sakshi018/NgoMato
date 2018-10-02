@@ -6,14 +6,17 @@ import { AppComponent } from './app.component';
 import {MatToolbarModule} from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule,MatGridListModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule,MatGridListModule, MatTabsModule} from '@angular/material';
 import { NgoListComponent } from './ngo-list/ngo-list.component';
 import { HttpClientModule }    from '@angular/common/http';
+import { AdminComponent } from './admin/admin.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NgoListComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { HttpClientModule }    from '@angular/common/http';
     MatCardModule,
     MatButtonModule,
     MatGridListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
