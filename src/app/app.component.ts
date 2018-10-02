@@ -20,12 +20,14 @@ export class AppComponent {
   selectedCity = 'Bengaluru'; //default 
 
   ngoNameList : string[];
-
+  userLoggedIn: string;
+  showProfile: Boolean = false;
   myControl = new FormControl();
   options: NgoName[] = [];
   filteredOptions: Observable<NgoName[]>;
   loadNgoPage: Boolean;
   loadNgoId: Ngo;
+  launchLogin: Boolean = false;
 
   ngOnInit() {
     this.loadNgoPage = false;
@@ -41,6 +43,21 @@ export class AppComponent {
     this.options = event;
   }
 
+  updateLoginModalStatus(){
+    this.launchLogin = false;
+  }
+
+  loginEvent(event){
+    this.launchLogin = false;
+    if(event=="LoginFailed"){
+      this.showProfile = false;
+    }else{
+      this.showProfile = true;
+      this.userLoggedIn = event;
+    }
+
+
+  }
   loadNgo(event){
     this.loadNgoPage = true;//one button to toggle between ngoList and ngoPage
     this.loadNgoId = event;
@@ -59,5 +76,9 @@ export class AppComponent {
     const filterValue = name.toLowerCase();
 
     return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  loginClicked(){
+    this.launchLogin = true;
   }
 }
