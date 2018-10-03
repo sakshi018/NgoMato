@@ -2,7 +2,7 @@
   <mat-grid-list cols="3" rowHeight="600">
     <mat-grid-tile *ngFor="let ngo of ngoViewModel; let i = index" (click)="openNgoCard(ngo)">
       <div class="col-md">
-        <mat-card class="example-card">
+        <mat-card class="example-card"> <!--(click)="openNgoCard(ngo)"-->
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>{{ngo.name}}</mat-card-title>
@@ -18,10 +18,11 @@
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button>Donate Now</button>
+            <button mat-button (click)="modalClicked(ngo)">Donate Now</button>
           </mat-card-actions>
         </mat-card>
       </div>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
+

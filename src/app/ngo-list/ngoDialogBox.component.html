@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Donation request for {{this.ngo.name}}</h2>
+<mat-dialog-content>
+    <div class="donationForm">
+        <ol>
+            <li>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="description" placeholder="Description">
+                </mat-form-field>
+            </li>
+            <li>
+                <mat-form-field>
+                    <mat-select [(value)]="requirement" multiple>
+                        <mat-option *ngFor="let requirement of requirements" [value]="requirement">
+                            {{requirement}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </li>
+        </ol>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="submitDonations()"> Submit</button>
+</mat-dialog-actions>
