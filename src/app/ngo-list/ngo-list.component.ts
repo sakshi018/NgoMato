@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NgoService } from '../ngo.service';
-import { Ngo } from './../shared/Ngo.class';
+import { Ngo } from '../shared/Ngo.class';
 
 
 
@@ -21,9 +21,11 @@ export class NgoListComponent implements OnInit {
   responseData: any = [];
   ngoViewModel: Ngo[];
   message: string;
-
+  images : any[];
+  
 
   constructor(private _ngoApi: NgoService) {
+    this.images = ["app/shared/images/1.jpg", "app/shared/images/2.jpg","app/shared/images/3.jpg"]
   }
 
   ngOnInit() {
