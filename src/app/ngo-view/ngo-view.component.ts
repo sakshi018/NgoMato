@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Ngo } from './../shared/ngo.class';
+import { Ngo } from '../shared/ngo.class';
 
 @Component({
   selector: 'app-ngo-view',

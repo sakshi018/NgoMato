@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, Inject } from '@angular/core';
 import { NgoService } from '../ngo.service';
-import { Ngo } from './../shared/Ngo.class';
+import { Ngo } from '../shared/ngo.class';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 export interface DialogData {
