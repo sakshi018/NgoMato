@@ -12,12 +12,12 @@
           <!--(click)="openNgoCard(ngo)"-->
           <mat-card-header>
             <div class="example-header-image">
-              <img mat-card-avatar [src]="images[i]" alt="Image not available">
+              <img mat-card-avatar [src]="images[i+1]" alt="Image not available">
             </div>
             <mat-card-title><b>{{ngo.name}}</b></mat-card-title>
             <mat-card-subtitle>{{ngo.description}}</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image [src]="images[i]" alt="Image not available">
+          <img mat-card-image [src]="images[i+1]" alt="Image not available">
           <mat-card-content>
             <p>
               <b>We are looking for</b>

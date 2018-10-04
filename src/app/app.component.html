@@ -5,9 +5,11 @@
     <button mat-button class="example-icon" (click)="loginClicked()">Login</button>
     <button mat-button class="example-icon" (click)="loginClicked()">Signup</button>
   </mat-toolbar-row>
-
+  
   <mat-toolbar-row *ngIf="showProfile">
-    <span>{{userLoggedIn}}@{{title}}</span>
+    <h1>{{ title }}</h1>
+    <span class="example-spacer"></span>
+    <span>@{{userLoggedIn}}</span>
   </mat-toolbar-row>
 
   <mat-toolbar-row>
@@ -39,7 +41,8 @@
 
 
 <div *ngIf="!loadNgoPage">
-  <app-ngo-list [citySelected]="selectedCity" [loggedInUser]="userLoggedIn" (ngoNames)="getNgoNames($event)" (ngoSelected)="loadNgo($event)"></app-ngo-list>
+  <app-ngo-list [citySelected]="selectedCity" [loggedInUser]="userLoggedIn" (ngoNames)="getNgoNames($event)"
+    (ngoSelected)="loadNgo($event)"></app-ngo-list>
 </div>
 <div *ngIf="loadNgoPage">
   <app-ngo-view [ngoIdToLoad]="loadNgoId"></app-ngo-view>

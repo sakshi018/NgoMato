@@ -38,7 +38,7 @@ export class NgoListComponent implements OnInit {
   errorMessage: string;
 
   constructor(private _ngoApi: NgoService, public dialog: MatDialog) {
-    this.images = ["app/shared/images/1.jpg", "app/shared/images/2.jpg", "app/shared/images/3.jpg"]
+    this.makeImagePathList();
   }
 
   ngOnInit() {
@@ -68,16 +68,39 @@ export class NgoListComponent implements OnInit {
 
   }
 
+  makeImagePathList() {
+    this.images = [];
+    for (let i = 1; i <= 14; i++) {
+      this.images[i] = "app/shared/images/" + i + ".jpg";
+    }
+  }
+
   assigndata(data: any) {
     this.responseData = data;
     if (this.responseData) {
       this.ngoAvailable = [];
       this.ngoViewModel = [];
+      var city;
       for (let i = 0; i < this.responseData.length; i++) {
         let ngo: Ngo = this.getNewNgo(this.responseData[i]);
+        city = this.responseData[i]['city'];
         ngo.imageId = "//d:/ngomato/NgoMato/src/app/shared/images/" + i + 1 + ".jpg";
         this.ngoViewModel.push(ngo);
         let obj = { name: this.responseData[i]['name'] }
+        this.ngoAvailable.push(obj);
+      }
+      //writing logic to add dummy ngos
+      //needs to be removed after real service integration
+      for (let i = 4; i <= 14; i++) {
+        let ngo: Ngo = new Ngo();
+        ngo.name = "NGO" + i + " " + city;
+        ngo.description = 'General NGO: Working in various fields over years to help the un-priviledged';
+        if (1 % 2 == 0)
+          ngo.requirements = ["Man Hours", "Medicines", "Food"];
+        else
+          ngo.requirements = ["books", "clothes", "capital"];
+        this.ngoViewModel.push(ngo);
+        let obj = { name: ngo.name }
         this.ngoAvailable.push(obj);
       }
     }
@@ -91,9 +114,10 @@ export class NgoListComponent implements OnInit {
     ngo.address = ngoData['address'];
     ngo.category = ngoData['category'];
     ngo.city = ngoData['city'];
-    ngo.description = ngoData['description'] == undefined ? 'General NGO: Working in various fields over years to help the un-priviledged' : ngoData['description'];
+    // ngo.description = ngoData['description'] == undefined ? 'General NGO: Working in various fields over years to help the un-priviledged' : ngoData['description'];
+    ngo.description = 'General NGO: Working in various fields over years to help the un-priviledged';
     ngo.email = ngoData['email'];
-    ngo.name = ngoData['name'];
+    ngo.name = ngoData['name'] + " " + ngoData['city'];
     ngo.requirements = ngoData['requirements'] == undefined ? generalRequirements : ngoData['requirements'];
     return ngo;
   }
@@ -140,7 +164,7 @@ export class NgoListComponent implements OnInit {
 
   onClose() {
     this.launchMessageModal = false;
-    }
+  }
 
 }
 

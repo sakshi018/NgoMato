@@ -14,6 +14,7 @@ import { LoginSignupComponent } from './login-signup/login-signup.component';
 import { DialogBox } from './ngo-list/ngo-list.component';
 import { MatDialog } from '@angular/material';
 
+
 @NgModule({
   declarations: [
     AppComponent,
