@@ -14,6 +14,7 @@ import { LoginSignupComponent } from './login-signup/login-signup.component';
 import { DialogBox } from './ngo-list/ngo-list.component';
 import { MatDialog } from '@angular/material';
 import { AdminComponent } from './admin/admin.component';
+import { HistoryComponent } from './history/history.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AdminComponent } from './admin/admin.component';
     NgoViewComponent,
     LoginSignupComponent,
     DialogBox,
-    AdminComponent
+    AdminComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

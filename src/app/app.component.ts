@@ -99,7 +99,8 @@ export class AppComponent {
   }
 
   historyClicked() {
-    let body = { "userId": this.userLoggedIn };
-    this.ngoService.getDonationsForUser(body);
+    // let body = { "userId": this.userLoggedIn };
+    // this.ngoService.getDonationsForUser(body);
+    //this.showHistory = true;
   }
 }
