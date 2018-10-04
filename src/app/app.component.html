@@ -14,7 +14,7 @@
     <button mat-button class="example-icon" (click)="historyClicked()">History</button>
   </mat-toolbar-row>
 
-  <mat-toolbar-row>
+  <mat-toolbar-row *ngIf="!adminMode">
     <mat-form-field>
       <mat-select [(value)]="selectedCity" (selectionChange)="ngoCitySearchedClicked($event)">
         <mat-option *ngFor="let city of cities" [value]="city">
@@ -40,13 +40,15 @@
 
 </mat-toolbar>
 
+<div *ngIf="adminMode"> 
+  <app-admin></app-admin>
+</div>
 
-
-<div *ngIf="!loadNgoPage">
+<div *ngIf="!loadNgoPage && !adminMode">
   <app-ngo-list [citySelected]="selectedCity" [loggedInUser]="userLoggedIn" (ngoNames)="getNgoNames($event)"
     (ngoSelected)="loadNgo($event)"></app-ngo-list>
 </div>
-<div *ngIf="loadNgoPage">
+<div *ngIf="loadNgoPage && !adminMode">
   <app-ngo-view [ngoIdToLoad]="loadNgoId"></app-ngo-view>
 </div>
 

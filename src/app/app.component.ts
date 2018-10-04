@@ -63,6 +63,7 @@ export class AppComponent {
       this.showProfile = true;
 
     } else {
+      this.showProfile = true;
       this.adminMode = true;
     }
 
@@ -94,6 +95,7 @@ export class AppComponent {
   logoutClicked() {
     this.userLoggedIn = "LoginFailed";//default name for not logged in
     this.showProfile = false;
+    this.adminMode = false;
   }
 
   historyClicked() {

@@ -177,6 +177,8 @@ export class DialogBox {
   description: string;
   requirement: string;
   requirements: any[];
+  address: string;
+  contactNumber: number;
   ngo: Ngo;
 
   constructor(public dialogRef: MatDialogRef<DialogBox>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
@@ -197,6 +199,8 @@ export class DialogBox {
     submitResponse.ngo = this.ngo;
     submitResponse.description = this.description;
     submitResponse.requirement = this.requirement;
+    submitResponse.address = this.address;
+    submitResponse.contactNumber = this.contactNumber;
     this.dialogRef.close(submitResponse);
   }
 }
