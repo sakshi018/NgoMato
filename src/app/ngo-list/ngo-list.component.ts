@@ -31,9 +31,10 @@ export class NgoListComponent implements OnInit {
   requirement: string
   requirements: string[];
   donationForNGO: Ngo;
-
+  images : any[];
 
   constructor(private _ngoApi: NgoService, public dialog: MatDialog) {
+    this.images = ["app/shared/images/1.jpg", "app/shared/images/2.jpg","app/shared/images/3.jpg"]
   }
 
   ngOnInit() {
