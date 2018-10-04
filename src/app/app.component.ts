@@ -30,6 +30,7 @@ export class AppComponent {
   loadNgoId: Ngo;
   launchLogin: Boolean = false;
   adminMode: Boolean = false;
+  showHistory: Boolean = false;
 
   constructor(private ngoService: NgoService) {
 
@@ -76,6 +77,7 @@ export class AppComponent {
 
   ngoCitySearchedClicked(event) {
     this.loadNgoPage = false;
+    this.showHistory = false;
   }
 
   displayFn(NgoName?: NgoName): string | undefined {
@@ -101,6 +103,6 @@ export class AppComponent {
   historyClicked() {
     // let body = { "userId": this.userLoggedIn };
     // this.ngoService.getDonationsForUser(body);
-    //this.showHistory = true;
+    this.showHistory = true;
   }
 }

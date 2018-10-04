@@ -44,12 +44,15 @@
   <app-admin></app-admin>
 </div>
 
-<div *ngIf="!loadNgoPage && !adminMode">
+<div *ngIf="!loadNgoPage && !adminMode && !showHistory">
   <app-ngo-list [citySelected]="selectedCity" [loggedInUser]="userLoggedIn" (ngoNames)="getNgoNames($event)"
     (ngoSelected)="loadNgo($event)"></app-ngo-list>
 </div>
-<div *ngIf="loadNgoPage && !adminMode">
+<div *ngIf="loadNgoPage && !adminMode && !showHistory">
   <app-ngo-view [ngoIdToLoad]="loadNgoId"></app-ngo-view>
+</div>
+<div *ngIf="showHistory">
+  <app-history></app-history>
 </div>
 
 
