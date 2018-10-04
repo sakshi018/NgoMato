@@ -7,6 +7,8 @@ export interface DialogData {
   description: string;
   requirements: string[];
   requirement: string;//it corresponds to requirement selected by user on daonation
+  contactNumber: number;
+  address:string;
   ngo: Ngo;
 }
 

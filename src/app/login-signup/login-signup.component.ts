@@ -18,6 +18,7 @@ export class LoginSignupComponent implements OnInit {
     this.credentials = new Map<string,string>();
     this.credentials['sakshi'] = 'ngo1';
     this.credentials['prakhar'] = 'ngo2';
+    this.credentials['admin'] = 'master';
   }
 
   ngOnInit() {

@@ -28,6 +28,7 @@ export class AppComponent {
   loadNgoPage: Boolean;
   loadNgoId: Ngo;
   launchLogin: Boolean = false;
+  adminMode: Boolean = false;
 
   ngOnInit() {
     this.loadNgoPage = false;
@@ -51,9 +52,11 @@ export class AppComponent {
     this.launchLogin = false;
     if(event=="LoginFailed"){
       this.showProfile = false;
-    }else{
+    }else if(event!='admin'){
       this.showProfile = true;
       this.userLoggedIn = event;
+    }else{
+      this.adminMode = true;
     }
 
 
@@ -64,7 +67,6 @@ export class AppComponent {
   }
 
   ngoCitySearchedClicked(event){
-    console.log("Clciked!!");
     this.loadNgoPage = false;
   }
 
