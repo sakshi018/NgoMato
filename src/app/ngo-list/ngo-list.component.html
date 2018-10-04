@@ -1,4 +1,10 @@
 <div>
+  <div class="errorModal" *ngIf="launchMessageModal">
+    <div class="errorModalBody">
+      <span class="close" (click)="onClose()">&times;</span>
+      {{errorMessage}}
+    </div>
+  </div>
   <mat-grid-list cols="3" rowHeight="600">
     <mat-grid-tile *ngFor="let ngo of ngoViewModel; let i = index">
       <div class="col-md">

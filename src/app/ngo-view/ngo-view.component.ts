@@ -9,6 +9,7 @@ import { Ngo } from '../shared/ngo.class';
 export class NgoViewComponent implements OnInit {
 
   @Input() ngoIdToLoad: Ngo;
+  
   constructor() { }
 
   ngOnInit() {

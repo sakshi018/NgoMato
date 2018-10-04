@@ -8,7 +8,7 @@ export interface DialogData {
   requirements: string[];
   requirement: string;//it corresponds to requirement selected by user on daonation
   contactNumber: number;
-  address:string;
+  address: string;
   ngo: Ngo;
 }
 
@@ -21,6 +21,7 @@ export interface DialogData {
 export class NgoListComponent implements OnInit {
 
   @Input() citySelected: string;
+  @Input() loggedInUser: string;
   @Output() ngoNames: EventEmitter<any> = new EventEmitter();
   @Output() ngoSelected: EventEmitter<any> = new EventEmitter();
   ngoAvailable: any[];
@@ -31,10 +32,13 @@ export class NgoListComponent implements OnInit {
   requirement: string
   requirements: string[];
   donationForNGO: Ngo;
-  images : any[];
+  userLoggedIn: Boolean = false;
+  images: any[];
+  launchMessageModal: Boolean = false;
+  errorMessage: string;
 
   constructor(private _ngoApi: NgoService, public dialog: MatDialog) {
-    this.images = ["app/shared/images/1.jpg", "app/shared/images/2.jpg","app/shared/images/3.jpg"]
+    this.images = ["app/shared/images/1.jpg", "app/shared/images/2.jpg", "app/shared/images/3.jpg"]
   }
 
   ngOnInit() {
@@ -58,6 +62,9 @@ export class NgoListComponent implements OnInit {
           }
         }
       );
+
+    //userLoggedInStatus
+    this.checkIfUserIsLoggedIn(this.loggedInUser);
 
   }
 
@@ -99,20 +106,41 @@ export class NgoListComponent implements OnInit {
 
   modalClicked(ngoClickedForDonation: Ngo): void {
 
-    this.donationForNGO = ngoClickedForDonation;
-    this.requirements = ngoClickedForDonation.requirements;
-    const dialogRef = this.dialog.open(DialogBox, {
-      width: '450px',
-      data: { description: this.description, requirements: this.requirements, ngo: this.donationForNGO }
+    if (this.userLoggedIn) {//launching donation Modal only if user is logged in
 
-    });
+      this.donationForNGO = ngoClickedForDonation;
+      this.requirements = ngoClickedForDonation.requirements;
+      const dialogRef = this.dialog.open(DialogBox, {
+        width: '450px',
+        data: { description: this.description, requirements: this.requirements, ngo: this.donationForNGO }
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.description = result.description;
-      this.requirement = result.requirement;
-    });
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.description = result.description;
+        this.requirement = result.requirement;
+      });
+
+    } else {
+      //pop-up a message to log-in to make donations
+      this.errorMessage = "Please log-in to make donations";
+      this.launchMessageModal = true;
+    }
 
   }
+
+  checkIfUserIsLoggedIn(loggedInUser: string) {
+    if (loggedInUser != 'admin' && loggedInUser != 'LoginFailed') {
+      //some user is logged in
+      this.userLoggedIn = true;
+    } else {
+      this.userLoggedIn = false;
+    }
+  }
+
+  onClose() {
+    this.launchMessageModal = false;
+    }
 
 }
 

@@ -20,7 +20,7 @@ export class AppComponent {
   selectedCity = 'Bengaluru'; //default 
 
   ngoNameList : string[];
-  userLoggedIn: string;
+  userLoggedIn: string = 'LoginFailed';//default value when no user is logged In
   showProfile: Boolean = false;
   myControl = new FormControl();
   options: NgoName[] = [];
@@ -50,11 +50,13 @@ export class AppComponent {
 
   loginEvent(event){
     this.launchLogin = false;
+    this.userLoggedIn = event;
     if(event=="LoginFailed"){
       this.showProfile = false;
+      
     }else if(event!='admin'){
       this.showProfile = true;
-      this.userLoggedIn = event;
+      
     }else{
       this.adminMode = true;
     }
