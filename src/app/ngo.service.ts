@@ -16,6 +16,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 const getNgoUrl = 'https://h5qk7d3pm1.execute-api.ap-south-1.amazonaws.com/dev/ngo/getAllNGO';
+const getDonationsForUserUrl = "https://h5qk7d3pm1.execute-api.ap-south-1.amazonaws.com/dev/ngo/getDonationsForUser";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,9 @@ export class NgoService {
   }
   getAllNGO(body): Observable<any>{
     return this.http.post<any>(getNgoUrl,body,httpOptions);
-  
+  }
+
+  getDonationsForUser(body): Observable<any>{
+    return this.http.post<any>(getDonationsForUserUrl,body,httpOptions);
   }
 }

@@ -1,8 +1,9 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import {Ngo} from './shared/ngo.class';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { Ngo } from './shared/ngo.class';
+import { NgoService } from './ngo.service';
 
 
 export interface NgoName {
@@ -19,7 +20,7 @@ export class AppComponent {
   cities = ['Bengaluru', 'Mumbai', 'Hyderabad'];
   selectedCity = 'Bengaluru'; //default 
 
-  ngoNameList : string[];
+  ngoNameList: string[];
   userLoggedIn: string = 'LoginFailed';//default value when no user is logged In
   showProfile: Boolean = false;
   myControl = new FormControl();
@@ -30,6 +31,10 @@ export class AppComponent {
   launchLogin: Boolean = false;
   adminMode: Boolean = false;
 
+  constructor(private ngoService: NgoService) {
+
+  }
+
   ngOnInit() {
     this.loadNgoPage = false;
     this.filteredOptions = this.myControl.valueChanges
@@ -39,36 +44,36 @@ export class AppComponent {
         map(name => name ? this._filter(name) : this.options.slice())
       );
   }
-  getNgoNames(event){
+  getNgoNames(event) {
 
     this.options = event;
   }
 
-  updateLoginModalStatus(){
+  updateLoginModalStatus() {
     this.launchLogin = false;
   }
 
-  loginEvent(event){
+  loginEvent(event) {
     this.launchLogin = false;
     this.userLoggedIn = event;
-    if(event=="LoginFailed"){
+    if (event == "LoginFailed") {
       this.showProfile = false;
-      
-    }else if(event!='admin'){
+
+    } else if (event != 'admin') {
       this.showProfile = true;
-      
-    }else{
+
+    } else {
       this.adminMode = true;
     }
 
 
   }
-  loadNgo(event){
+  loadNgo(event) {
     this.loadNgoPage = true;//one button to toggle between ngoList and ngoPage
     this.loadNgoId = event;
   }
 
-  ngoCitySearchedClicked(event){
+  ngoCitySearchedClicked(event) {
     this.loadNgoPage = false;
   }
 
@@ -82,7 +87,17 @@ export class AppComponent {
     return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  loginClicked(){
+  loginClicked() {
     this.launchLogin = true;
+  }
+
+  logoutClicked() {
+    this.userLoggedIn = "LoginFailed";//default name for not logged in
+    this.showProfile = false;
+  }
+
+  historyClicked() {
+    let body = { "userId": this.userLoggedIn };
+    this.ngoService.getDonationsForUser(body);
   }
 }

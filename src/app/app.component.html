@@ -5,11 +5,13 @@
     <button mat-button class="example-icon" (click)="loginClicked()">Login</button>
     <button mat-button class="example-icon" (click)="loginClicked()">Signup</button>
   </mat-toolbar-row>
-  
+
   <mat-toolbar-row *ngIf="showProfile">
-    <h1>{{ title }}</h1>
+    <!-- <h1>{{ title }}</h1> -->
+    <span>{{ title }}@{{userLoggedIn}}</span>
     <span class="example-spacer"></span>
-    <span>@{{userLoggedIn}}</span>
+    <button mat-button class="example-icon" (click)="logoutClicked()">Logout</button>
+    <button mat-button class="example-icon" (click)="historyClicked()">History</button>
   </mat-toolbar-row>
 
   <mat-toolbar-row>
