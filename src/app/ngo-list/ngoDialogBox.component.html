@@ -2,14 +2,15 @@
 <mat-dialog-content>
     <div class="donationForm">
         <ol>
+                <p> Please enter all the following details </p>
             <li>
                 <mat-form-field>
-                    <input matInput [(ngModel)]="address" placeholder="Enter your Address">
+                    <input matInput [(ngModel)]="address" placeholder="Address">
                 </mat-form-field>
             </li>
             <li>
                 <mat-form-field>
-                    <input matInput [(ngModel)]="contactNumber" placeholder="Enter your contect number">
+                    <input matInput [(ngModel)]="contactNumber" placeholder="Contact number">
                 </mat-form-field>
             </li>
             <li>
@@ -17,10 +18,13 @@
                     <input matInput [(ngModel)]="description" placeholder="Description">
                 </mat-form-field>
             </li>
+
+            <p> Please fill up the requirements </p>
+
             <li>
                 <mat-form-field>
                     <mat-select [(value)]="requirement" multiple>
-                        <mat-option *ngFor="let requirement of requirements" [value]="requirement">
+                        <mat-option *ngFor="let requirement of requirements" [value]="requirement" placeholder="Requirements">
                             {{requirement}}
                         </mat-option>
                     </mat-select>
