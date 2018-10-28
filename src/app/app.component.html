@@ -2,19 +2,23 @@
   <mat-toolbar-row *ngIf="!showProfile">
     <h1>{{ title }}</h1>
     <span class="example-spacer"></span>
-    <button mat-button class="example-icon" (click)="loginClicked()">Login</button>
-    <button mat-button class="example-icon" (click)="loginClicked()">Signup</button>
+    <button mat-raised-button color="primary" class="example-icon" (click)="loginClicked()"><i class="material-icons">face</i>Login</button>
+    <button mat-raised-button color="primary" class="example-icon" (click)="loginClicked()"><i class="material-icons">account_box</i>Signup</button>
   </mat-toolbar-row>
 
   <mat-toolbar-row *ngIf="showProfile">
     <!-- <h1>{{ title }}</h1> -->
     <span>{{ title }}@{{userLoggedIn}}</span>
     <span class="example-spacer"></span>
-    <button mat-button class="example-icon" (click)="logoutClicked()">Logout</button>
-    <button mat-button class="example-icon" (click)="historyClicked()">History</button>
+    <button mat-raised-button color="primary" class="example-icon" (click)="logoutClicked()">Logout</button>
+    <button mat-raised-button color="primary" class="example-icon" (click)="historyClicked()">History</button>
   </mat-toolbar-row>
 
-  <mat-toolbar-row *ngIf="!adminMode">
+  <mat-toolbar-row *ngIf="loadNgoPage">
+      <button mat-button class="example-icon" (click)="backClicked()"><i class="material-icons">keyboard_arrow_left</i>{{loadNgoId.name}}</button>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row *ngIf="!adminMode && !loadNgoPage">
     <mat-form-field>
       <mat-select [(value)]="selectedCity" (selectionChange)="ngoCitySearchedClicked($event)">
         <mat-option *ngFor="let city of cities" [value]="city">
@@ -40,7 +44,7 @@
 
 </mat-toolbar>
 
-<div *ngIf="adminMode"> 
+<div *ngIf="adminMode">
   <app-admin></app-admin>
 </div>
 

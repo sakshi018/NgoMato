@@ -50,7 +50,6 @@ export class AppComponent {
       );
   }
   getNgoNames(event) {
-
     this.options = event;
   }
 
@@ -83,8 +82,13 @@ export class AppComponent {
     this.loadNgoPage = false;
     this.showHistory = false;
     this.valueSearched = "";
-    this.myControl.reset();
+    this.myControl.setValue("");
     this.getDataFromService();
+  }
+
+  backClicked(){
+    this.loadNgoPage = false;
+
   }
 
   getDataFromService() {
@@ -118,8 +122,8 @@ export class AppComponent {
 
   filteresSearchList(event) {
     this.valueSearched = event;
-
   }
+
   searchClicked(searchIdEvent: any) {
     if (searchIdEvent.isUserInput) {
       this.valueSearched = searchIdEvent.source.value.name;
