@@ -85,7 +85,7 @@ export class AppComponent {
     this.getDataFromService();
   }
 
-  getDataFromService(){
+  getDataFromService() {
     let body = {
       "city": this.selectedCity
     };
@@ -98,7 +98,7 @@ export class AppComponent {
             this.reponseData = data;
           }
           else {
-           // this. = "Some Internal Error, please try after some time"
+            // this. = "Some Internal Error, please try after some time"
           }
         }
       );
@@ -115,13 +115,12 @@ export class AppComponent {
   }
 
   filteresSearchList(event) {
-    console.log("event", event);
     this.valueSearched = event;
 
   }
   searchClicked(searchIdEvent: any) {
     if (searchIdEvent.isUserInput) {
-      console.log("ngo searched", searchIdEvent.source.value.name);
+      this.valueSearched = searchIdEvent.source.value.name;
     }
   }
 
