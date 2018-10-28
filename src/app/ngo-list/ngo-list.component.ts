@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output, Inject } from '@angular
 import { NgoService } from '../ngo.service';
 import { Ngo } from '../shared/ngo.class';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 export interface DialogData {
   description: string;
@@ -40,7 +41,7 @@ export class NgoListComponent implements OnInit {
   oldValueOFCitySelected: string = "";
   breakpoint: any;
 
-  constructor(private _ngoApi: NgoService, public dialog: MatDialog) {
+  constructor(private _ngoApi: NgoService, public dialog: MatDialog, public snackBar: MatSnackBar) {
     this.makeImagePathList();
   }
 
@@ -83,7 +84,7 @@ export class NgoListComponent implements OnInit {
         let ngo: Ngo = this.getNewNgo(this.responseData[i]);
         city = this.responseData[i]['city'];
         ngo.imageId = "app/shared/images/" + (i + 1).toString() + ".jpg";
-        ngo.rating = (i*2+5.3)%4+1;
+        ngo.rating = (i * 2 + 5.3) % 4 + 1;
         this.ngoViewModel.push(ngo);
         let obj = { name: this.responseData[i]['name'] }
         this.ngoAvailable.push(obj);
@@ -98,7 +99,7 @@ export class NgoListComponent implements OnInit {
           ngo.requirements = ["Man Hours", "Medicines", "Food"];
         else
           ngo.requirements = ["books", "clothes", "capital"];
-          ngo.rating = 3.8;
+        ngo.rating = 3.8;
         this.ngoViewModel.push(ngo);
         let obj = { name: ngo.name }
         this.ngoAvailable.push(obj);
@@ -122,7 +123,7 @@ export class NgoListComponent implements OnInit {
     return ngo;
   }
 
-  getNgoRating(){
+  getNgoRating() {
     return Math.random();
   }
 
@@ -185,7 +186,7 @@ export class DialogBox {
   contactNumber: number;
   ngo: Ngo;
 
-  constructor(public dialogRef: MatDialogRef<DialogBox>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(public dialogRef: MatDialogRef<DialogBox>, @Inject(MAT_DIALOG_DATA) public data: DialogData, public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -206,5 +207,12 @@ export class DialogBox {
     submitResponse.address = this.address;
     submitResponse.contactNumber = this.contactNumber;
     this.dialogRef.close(submitResponse);
+    this.openSnackBar("Request Submitted", "Thank You");
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

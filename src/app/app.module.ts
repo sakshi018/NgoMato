@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material';
 import { AdminComponent } from './admin/admin.component';
 import { HistoryComponent } from './history/history.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatIconModule,
     MatTabsModule,
     MatDialogModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule
   ],
   providers: [MatDialog],
   entryComponents: [DialogBox],

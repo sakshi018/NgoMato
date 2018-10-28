@@ -136,7 +136,7 @@ export class AppComponent {
     this.launchLogin = true;
   }
 
-  singupClicked(){
+  singupClicked() {
     this.launchSingUpId = 1;
     this.launchLogin = true;
   }

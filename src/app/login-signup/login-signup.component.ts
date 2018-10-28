@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -32,8 +33,8 @@ export class LoginSignupComponent implements OnInit {
   @Output() loginModalClosed: EventEmitter<any> = new EventEmitter();
   @Output() loginModalEvent: EventEmitter<any> = new EventEmitter();
   @Input() launchSingUpId:any;
-  
-  constructor() {
+
+  constructor(public snackBar: MatSnackBar) {
     this.credentials = new Map<string, string>();
     this.credentials['sakshi'] = 'ngo1';
     this.credentials['prakhar'] = 'ngo2';
@@ -52,13 +53,22 @@ export class LoginSignupComponent implements OnInit {
     //service call to verify user credentials is made
     if (this.credentials[this.username] == this.password) {
       //loginSuccessfull
+      this.openSnackBar("Login SuccessFul","");
       this.loginModalEvent.emit(this.username);
     }
     else {
       //loginFailed
+      this.openSnackBar("LoginFailed","Try Again");
       this.loginModalEvent.emit('LoginFailed')
     }
   }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
 }
 
 
