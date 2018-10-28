@@ -8,6 +8,7 @@ export class Ngo {
     name: string;
     requirements: string[];
     imageId: string;
+    rating: number;
 
     Ngo() {//default const.
 
