@@ -9,6 +9,7 @@
       </div> -->
     </div>
   </div>
+  <!-- //<mat-icon>star</mat-icon> -->
   <mat-grid-list [cols]="breakpoint" rowHeight="600" (window:resize)="onResize($event)">
     <mat-grid-tile *ngFor="let ngo of ngoViewModel; let i = index">
       <div class="col-md">
@@ -18,21 +19,22 @@
             <div class="example-header-image">
               <img mat-card-avatar [src]="images[i+1]" alt="Image not available">
             </div>
-            <mat-card-title><b>{{ngo.name}}</b></mat-card-title>
+            <mat-card-title><b><u>{{ngo.name}}</u></b> &nbsp; <span class="rating">{{ngo.rating |number:'1.1-1'}}</span></mat-card-title>
             <mat-card-subtitle>{{ngo.description}}</mat-card-subtitle>
           </mat-card-header>
           <img mat-card-image [src]="images[i+1]" alt="Image not available">
+          <div class="greenStatus" ng-class="i%3 == 0 ? 'redStatus':'greenStatus'"><b>Currently Accepting</b></div>
           <mat-card-content>
             <p>
-              <b>We are looking for</b>
+              <b><u>We are looking for :-</u></b>
               <li *ngFor="let requirement of ngo.requirements">
                 {{requirement}}
               </li>
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button (click)="modalClicked(ngo)">Donate Now</button>
-            <button mat-button (click)="openNgoCard(ngo)">Read More</button>
+            <button mat-raised-button color="primary" (click)="modalClicked(ngo)">Donate Now</button>
+            <button mat-raised-button color="primary" (click)="openNgoCard(ngo)">Read More <i class="material-icons">play_arrow</i></button>
           </mat-card-actions>
         </mat-card>
       </div>

@@ -26,6 +26,30 @@
     
 }
 
+.greenStatus{
+
+    background-color: #009900;
+    text-align: center;
+
+}
+
+.redStatus{
+
+    background-color: #e72f2f;
+    text-align: center;
+
+}
+
+.rating{
+    background-color: #009900;
+    width:25px;
+    height:25px;
+    text-align: center;
+    padding: 4px;
+    border-radius: 38%;
+
+}
+
 .close{
     color: #aaa;
     float: right;

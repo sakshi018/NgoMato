@@ -15,7 +15,7 @@ import { DialogBox } from './ngo-list/ngo-list.component';
 import { MatDialog } from '@angular/material';
 import { AdminComponent } from './admin/admin.component';
 import { HistoryComponent } from './history/history.component';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,8 @@ import { HistoryComponent } from './history/history.component';
     HttpClientModule,
     MatIconModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSidenavModule
   ],
   providers: [MatDialog],
   entryComponents: [DialogBox],

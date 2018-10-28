@@ -82,7 +82,8 @@ export class NgoListComponent implements OnInit {
       for (let i = 0; i < this.responseData.length; i++) {
         let ngo: Ngo = this.getNewNgo(this.responseData[i]);
         city = this.responseData[i]['city'];
-        ngo.imageId = "//d:/ngomato/NgoMato/src/app/shared/images/" + i + 1 + ".jpg";
+        ngo.imageId = "app/shared/images/" + (i + 1).toString() + ".jpg";
+        ngo.rating = (i*2+5.3)%4+1;
         this.ngoViewModel.push(ngo);
         let obj = { name: this.responseData[i]['name'] }
         this.ngoAvailable.push(obj);
@@ -97,6 +98,7 @@ export class NgoListComponent implements OnInit {
           ngo.requirements = ["Man Hours", "Medicines", "Food"];
         else
           ngo.requirements = ["books", "clothes", "capital"];
+          ngo.rating = 3.8;
         this.ngoViewModel.push(ngo);
         let obj = { name: ngo.name }
         this.ngoAvailable.push(obj);
@@ -118,6 +120,10 @@ export class NgoListComponent implements OnInit {
     ngo.name = ngoData['name'] + " " + ngoData['city'];
     ngo.requirements = ngoData['requirements'] == undefined ? generalRequirements : ngoData['requirements'];
     return ngo;
+  }
+
+  getNgoRating(){
+    return Math.random();
   }
 
   openNgoCard(ngo: Ngo) {

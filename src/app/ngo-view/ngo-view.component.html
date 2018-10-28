@@ -1,8 +1,34 @@
-<p>
-  {{ngoIdToLoad.name}}
-  {{ngoIdToLoad.city}}
-</p>
-<mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>Drawer content</mat-drawer>
-  <mat-drawer-content>Main content</mat-drawer-content>
+<mat-drawer-container class="example-container" autosize>
+  <div class="example-sidenav-content">
+    <button type="button" mat-raised-button color="primary" (click)="drawer.toggle()">
+      Reviews
+    </button>
+    <div class="ngoContent">
+      <mat-toolbar>
+        <span><button type="button" mat-raised-button color="primary" (click)="drawer.toggle()">About Us</button></span>
+        <span><button type="button" mat-raised-button color="primary" (click)="drawer.toggle()">Impact</button></span>
+        <span><button type="button" mat-raised-button color="primary" (click)="drawer.toggle()">Get Enrolled</button></span>
+        <span><button type="button" mat-raised-button color="primary" (click)="drawer.toggle()">Latest Updates</button></span>
+        <span><button type="button" mat-raised-button color="primary" (click)="drawer.toggle()">Contact</button></span>
+      </mat-toolbar>
+      <div class="ngoImage"><img [src]="image" width="500px" height="350px" alt="Image not available"></div>
+      <!-- <span>
+        Our Next Campaign
+      </span> -->
+      <div><strong>
+          {{ngoIdToLoad.name}} uses the under-utilised and excess urban household material as a tool for rural
+          development
+          across 23 states in the country. It thus aims to bring an equitable relationship of strength, sustenance and
+          dignity between the cities and villages.
+          You too have a stake in this collective responsibility. Click here to contribute.
+        </strong></div>
+    </div>
+  </div>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
 </mat-drawer-container>

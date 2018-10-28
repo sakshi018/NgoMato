@@ -9,10 +9,14 @@ import { Ngo } from '../shared/ngo.class';
 export class NgoViewComponent implements OnInit {
 
   @Input() ngoIdToLoad: Ngo;
+  image:string;
   
   constructor() { }
 
   ngOnInit() {
+
+    this.image = this.ngoIdToLoad.imageId;
+    console.log("",this.ngoIdToLoad.imageId);
     
   }
 
