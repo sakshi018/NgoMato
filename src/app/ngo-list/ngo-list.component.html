@@ -3,6 +3,10 @@
     <div class="errorModalBody">
       <span class="close" (click)="onClose()">&times;</span>
       {{errorMessage}}
+      <!-- <div>
+        <button mat-button class="example-icon" (click)="loginClicked()">LogIn</button>
+        <button mat-button class="example-icon" (click)="singupClicked()">Signup</button>
+      </div> -->
     </div>
   </div>
   <mat-grid-list cols="3" rowHeight="600">
@@ -28,6 +32,7 @@
           </mat-card-content>
           <mat-card-actions>
             <button mat-button (click)="modalClicked(ngo)">Donate Now</button>
+            <button mat-button (click)="openNgoCard(ngo)">Read More</button>
           </mat-card-actions>
         </mat-card>
       </div>

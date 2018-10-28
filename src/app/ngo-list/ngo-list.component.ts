@@ -95,7 +95,7 @@ export class NgoListComponent implements OnInit {
         let ngo: Ngo = new Ngo();
         ngo.name = "NGO" + i + " " + city;
         ngo.description = 'General NGO: Working in various fields over years to help the un-priviledged';
-        if (1 % 2 == 0)
+        if (i % 2 == 0)
           ngo.requirements = ["Man Hours", "Medicines", "Food"];
         else
           ngo.requirements = ["books", "clothes", "capital"];
