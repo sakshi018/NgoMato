@@ -82,6 +82,8 @@ export class AppComponent {
   ngoCitySearchedClicked(event) {
     this.loadNgoPage = false;
     this.showHistory = false;
+    this.valueSearched = "";
+    this.myControl.reset();
     this.getDataFromService();
   }
 
