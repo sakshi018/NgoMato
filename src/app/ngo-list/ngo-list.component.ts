@@ -38,12 +38,18 @@ export class NgoListComponent implements OnInit {
   errorMessage: string;
   @Input() valueSearched: string;
   oldValueOFCitySelected: string = "";
+  breakpoint: any;
 
   constructor(private _ngoApi: NgoService, public dialog: MatDialog) {
     this.makeImagePathList();
   }
 
   ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 414) ? 1 : 3;
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 414) ? 1 : 3;
   }
 
   ngOnChanges() {
@@ -62,7 +68,7 @@ export class NgoListComponent implements OnInit {
   }
 
   changeDisplayOnFilteredList(valSearched) {
-    if (this.ngoViewModel && valSearched!="" && valSearched!=undefined) {
+    if (this.ngoViewModel && valSearched != "" && valSearched != undefined) {
       this.ngoViewModel = this.ngoViewModel.filter((initials) => initials.name.toLowerCase().startsWith(valSearched.toLowerCase()));
     }
   }
