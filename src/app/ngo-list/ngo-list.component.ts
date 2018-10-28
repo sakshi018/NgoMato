@@ -25,7 +25,7 @@ export class NgoListComponent implements OnInit {
   @Output() ngoNames: EventEmitter<any> = new EventEmitter();
   @Output() ngoSelected: EventEmitter<any> = new EventEmitter();
   ngoAvailable: any[];
-  responseData: any = [];
+  @Input() responseData: any = [];
   ngoViewModel: Ngo[];
   message: string;
   description: string;
@@ -36,6 +36,8 @@ export class NgoListComponent implements OnInit {
   images: any[];
   launchMessageModal: Boolean = false;
   errorMessage: string;
+  @Input() valueSearched: string;
+  oldValueOFCitySelected: string = "";
 
   constructor(private _ngoApi: NgoService, public dialog: MatDialog) {
     this.makeImagePathList();
@@ -46,32 +48,22 @@ export class NgoListComponent implements OnInit {
 
   ngOnChanges() {
 
-    let body = {
-      "city": this.citySelected
-    };
-
-    this._ngoApi.getAllNGO(body)
-      .subscribe(
-        data => {
-          console.log("response from service ", data);
-          if (data != null || data != undefined) {
-            this.assigndata(data);
-          }
-          else {
-            this.message = "Some Internal Error, please try after some time"
-          }
-        }
-      );
-
+    this.assigndata(this.responseData);
     //userLoggedInStatus
     this.checkIfUserIsLoggedIn(this.loggedInUser);
-
+    this.changeDisplayOnFilteredList(this.valueSearched);
   }
 
   makeImagePathList() {
     this.images = [];
     for (let i = 1; i <= 14; i++) {
       this.images[i] = "app/shared/images/" + i + ".jpg";
+    }
+  }
+
+  changeDisplayOnFilteredList(valSearched) {
+    if (this.ngoViewModel && valSearched!="" && valSearched!=undefined) {
+      this.ngoViewModel = this.ngoViewModel.filter((initials) => initials.name.toLowerCase().startsWith(valSearched.toLowerCase()));
     }
   }
 

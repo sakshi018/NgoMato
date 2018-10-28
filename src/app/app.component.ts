@@ -31,12 +31,16 @@ export class AppComponent {
   launchLogin: Boolean = false;
   adminMode: Boolean = false;
   showHistory: Boolean = false;
+  valueSearched: string;
+  reponseData: Ngo[];
 
   constructor(private ngoService: NgoService) {
 
   }
 
   ngOnInit() {
+    this.selectedCity = 'Bengaluru';
+    this.getDataFromService();
     this.loadNgoPage = false;
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
@@ -78,6 +82,26 @@ export class AppComponent {
   ngoCitySearchedClicked(event) {
     this.loadNgoPage = false;
     this.showHistory = false;
+    this.getDataFromService();
+  }
+
+  getDataFromService(){
+    let body = {
+      "city": this.selectedCity
+    };
+
+    this.ngoService.getAllNGO(body)
+      .subscribe(
+        data => {
+          console.log("response from service ", data);
+          if (data != null || data != undefined) {
+            this.reponseData = data;
+          }
+          else {
+           // this. = "Some Internal Error, please try after some time"
+          }
+        }
+      );
   }
 
   displayFn(NgoName?: NgoName): string | undefined {
@@ -90,9 +114,21 @@ export class AppComponent {
     return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
+  filteresSearchList(event) {
+    console.log("event", event);
+    this.valueSearched = event;
+
+  }
+  searchClicked(searchIdEvent: any) {
+    if (searchIdEvent.isUserInput) {
+      console.log("ngo searched", searchIdEvent.source.value.name);
+    }
+  }
+
   loginClicked() {
     this.launchLogin = true;
   }
+
 
   logoutClicked() {
     this.userLoggedIn = "LoginFailed";//default name for not logged in

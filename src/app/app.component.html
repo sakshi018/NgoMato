@@ -27,10 +27,10 @@
 
     <form class="example-form" *ngIf="!loadNgoPage">
       <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Search" aria-label="Assignee" matInput [formControl]="myControl"
+        <input type="text" placeholder="Search" aria-label="Assignee" matInput [formControl]="myControl" (keyup)="filteresSearchList($event.target.value)"
           [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (onSelectionChange)="searchClicked($event)">
             {{option.name}}
           </mat-option>
         </mat-autocomplete>
@@ -45,8 +45,8 @@
 </div>
 
 <div *ngIf="!loadNgoPage && !adminMode && !showHistory">
-  <app-ngo-list [citySelected]="selectedCity" [loggedInUser]="userLoggedIn" (ngoNames)="getNgoNames($event)"
-    (ngoSelected)="loadNgo($event)"></app-ngo-list>
+  <app-ngo-list [responseData]="reponseData" [loggedInUser]="userLoggedIn" (ngoNames)="getNgoNames($event)"
+    (ngoSelected)="loadNgo($event)" [valueSearched]="valueSearched"></app-ngo-list>
 </div>
 <div *ngIf="loadNgoPage && !adminMode && !showHistory">
   <app-ngo-view [ngoIdToLoad]="loadNgoId"></app-ngo-view>
