@@ -1,24 +1,28 @@
 <mat-toolbar role="heading" color="primary">
   <mat-toolbar-row *ngIf="!showProfile">
-    <h1>{{ title }}</h1>
+    <h1><strong><i><u>{{ title }}</u></i></strong></h1>
     <span class="example-spacer"></span>
     <button mat-raised-button color="primary" class="example-icon" (click)="loginClicked()"><i class="material-icons">face</i>Login</button>
-    <button mat-raised-button color="primary" class="example-icon" (click)="loginClicked()"><i class="material-icons">account_box</i>Signup</button>
+    <button mat-raised-button color="primary" class="example-icon" (click)="singupClicked()"><i class="material-icons">account_box</i>Signup</button>
   </mat-toolbar-row>
 
   <mat-toolbar-row *ngIf="showProfile">
     <!-- <h1>{{ title }}</h1> -->
-    <span>{{ title }}@{{userLoggedIn}}</span>
+    <span><u><strong><i>{{ title }}</i></strong>@{{userLoggedIn}}</u></span>
     <span class="example-spacer"></span>
-    <button mat-raised-button color="primary" class="example-icon" (click)="logoutClicked()">Logout</button>
-    <button mat-raised-button color="primary" class="example-icon" (click)="historyClicked()">History</button>
+    <button mat-raised-button color="primary" class="example-icon" (click)="logoutClicked()"><i class="material-icons">exit_to_app</i>Logout</button>
+    <button mat-raised-button color="primary" class="example-icon" (click)="historyClicked()"><i class="material-icons">history</i>History</button>
   </mat-toolbar-row>
 
   <mat-toolbar-row *ngIf="loadNgoPage">
       <button mat-button class="example-icon" (click)="backClicked()"><i class="material-icons">keyboard_arrow_left</i>{{loadNgoId.name}}</button>
   </mat-toolbar-row>
 
-  <mat-toolbar-row *ngIf="!adminMode && !loadNgoPage">
+  <mat-toolbar-row *ngIf="showHistory">
+      <button mat-button class="example-icon" (click)="backClicked()"><i class="material-icons">keyboard_arrow_left</i>DashBoard</button>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row *ngIf="!adminMode && !loadNgoPage && !showHistory">
     <mat-form-field>
       <mat-select [(value)]="selectedCity" (selectionChange)="ngoCitySearchedClicked($event)">
         <mat-option *ngFor="let city of cities" [value]="city">
@@ -29,9 +33,9 @@
 
     <!-- (click)="ngoSearchedClicked()" to add input tag if need to toggle between screens-->
 
-    <form class="example-form" *ngIf="!loadNgoPage">
+    <form class="example-form" *ngIf="!adminMode && !loadNgoPage && !showHistory">
       <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Search" aria-label="Assignee" matInput [formControl]="myControl" (keyup)="filteresSearchList($event.target.value)"
+        <input type="text" placeholder="Search NGOs" aria-label="Assignee" matInput [formControl]="myControl" (keyup)="filteresSearchList($event.target.value)"
           [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (onSelectionChange)="searchClicked($event)">
@@ -61,5 +65,5 @@
 
 
 <div *ngIf="launchLogin">
-  <app-login-signup (loginModalClosed)="updateLoginModalStatus()" (loginModalEvent)="loginEvent($event)"></app-login-signup>
+  <app-login-signup (loginModalClosed)="updateLoginModalStatus()" (loginModalEvent)="loginEvent($event)" [launchSingUpId]="launchSingUpId"></app-login-signup>
 </div>

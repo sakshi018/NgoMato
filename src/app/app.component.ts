@@ -33,6 +33,7 @@ export class AppComponent {
   showHistory: Boolean = false;
   valueSearched: string;
   reponseData: Ngo[];
+  launchSingUpId: any;
 
   constructor(private ngoService: NgoService) {
 
@@ -86,9 +87,9 @@ export class AppComponent {
     this.getDataFromService();
   }
 
-  backClicked(){
+  backClicked() {
     this.loadNgoPage = false;
-
+    this.showHistory = false;
   }
 
   getDataFromService() {
@@ -131,6 +132,12 @@ export class AppComponent {
   }
 
   loginClicked() {
+    this.launchSingUpId = 0;
+    this.launchLogin = true;
+  }
+
+  singupClicked(){
+    this.launchSingUpId = 1;
     this.launchLogin = true;
   }
 

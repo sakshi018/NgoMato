@@ -14,7 +14,20 @@
                     <mat-icon matSuffix (click)="hide=!hide">{{hide? 'visibility':'visibility_off'}}</mat-icon>
                 </mat-form-field>
             </li>
+            <li *ngIf="launchSingUpId == 1">
+                <mat-form-field>
+                    <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+                    <mat-icon matSuffix>alternate_email</mat-icon>
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </li>
         </ol>
-        <button mat-button (click)="loginClicked()">Login</button>
+        <button mat-raised-button color="primary" [disabled]=" (launchSingUpId == 1 && emailFormControl.status != 'VALID') || !password || !username"
+            (click)="loginClicked()">Login</button>
     </div>
 </div>
