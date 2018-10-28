@@ -15,20 +15,33 @@
       <!-- <span>
         Our Next Campaign
       </span> -->
-      <div><strong>
+      <div>
+        <strong>
           {{ngoIdToLoad.name}} uses the under-utilised and excess urban household material as a tool for rural
           development
           across 23 states in the country. It thus aims to bring an equitable relationship of strength, sustenance and
           dignity between the cities and villages.
+          You too have a stake in this collective responsibility. Click here to contribute.{{ngoIdToLoad.name}} uses the under-utilised and excess urban household material as a tool for rural
+          development
+          across 23 states in the country. It thus aims to bring an equitable relationship of strength, sustenance and
+          dignity between the cities and villages.
+          You too have a stake in this collective responsibility. Click here to contribute.{{ngoIdToLoad.name}} uses the under-utilised and excess urban household material as a tool for rural
+          development
+          across 23 states in the country. It thus aims to bring an equitable relationship of strength, sustenance and
+          dignity between the cities and villages.
           You too have a stake in this collective responsibility. Click here to contribute.
-        </strong></div>
+        </strong>
+      </div>
+      <div class="center">
+        <button type="button" mat-raised-button color="primary" (click)="drawer.toggle()">Donate</button>
+      </div>
     </div>
   </div>
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <p>What other's say</p>
+    <!-- <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
     <button (click)="showFiller = !showFiller" mat-raised-button>
       Toggle extra text
-    </button>
+    </button> -->
   </mat-drawer>
 </mat-drawer-container>
