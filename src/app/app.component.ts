@@ -90,6 +90,7 @@ export class AppComponent {
   backClicked() {
     this.loadNgoPage = false;
     this.showHistory = false;
+    this.adminMode = false;
   }
 
   getDataFromService() {

@@ -9,15 +9,26 @@ import { Ngo } from '../shared/ngo.class';
 export class NgoViewComponent implements OnInit {
 
   @Input() ngoIdToLoad: Ngo;
-  image:string;
-  
+  image1: string;
+  image2: string;
+  mainScreen: boolean = true;
+  subScreens: boolean = false;
+  breakpoint: any;
+
+
   constructor() { }
 
   ngOnInit() {
 
-    this.image = this.ngoIdToLoad.imageId;
-    console.log("",this.ngoIdToLoad.imageId);
-    
+    this.image1 = this.ngoIdToLoad.imageId;
+    this.image2 = "app/shared/images/" + 8 + ".jpg";
+    this.breakpoint = (window.innerWidth <= 414) ? 1 : 3;
+
   }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 414) ? 1 : 3;
+  }
+
 
 }
