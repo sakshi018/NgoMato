@@ -21,6 +21,9 @@
       <!-- <span>
         Our Next Campaign
       </span> -->
+      <span class="ngoImage"><img [src]="image1" width="500px" height="350px" alt="Image not available"></span>
+      <span class="ngoImage"><img [src]="image2" width="500px" height="350px" alt="Image not available"></span>
+      <br/>
       <div>
         <strong>
           {{ngoIdToLoad.name}} uses the under-utilised and excess urban household material as a tool for rural
@@ -40,16 +43,54 @@
           You too have a stake in this collective responsibility. Click here to contribute.
         </strong>
       </div>
+      <div *ngIf="donateForm">
+        <div class="donateFormModal">
+          <div class="donationForm">
+            <span class="close" (click)="onClose()">&times;</span>
+            <ol>
+              <p> Please enter all the following details </p>
+              <li>
+                <mat-form-field>
+                  <input matInput [(ngModel)]="address" placeholder="Address">
+                </mat-form-field>
+              </li>
+              <li>
+                <mat-form-field>
+                  <input matInput [(ngModel)]="contactNumber" placeholder="Contact number">
+                </mat-form-field>
+              </li>
+              <li>
+                <mat-form-field>
+                  <input matInput [(ngModel)]="description" placeholder="Description">
+                </mat-form-field>
+              </li>
+
+              <p> Please fill up the requirements </p>
+
+              <li>
+                <mat-form-field>
+                  <mat-select [(value)]="requirement" multiple>
+                    <mat-option *ngFor="let requirement of ngoIdToLoad.requirements" [value]="requirement" placeholder="Requirements">
+                      {{requirement}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <br />
       <div class="center">
-        <button type="button" mat-raised-button color="primary" (click)="drawer.toggle()">Donate</button>
+        <button type="button" mat-raised-button color="primary" (click)="donateClicked()">Donate</button>
       </div>
     </div>
   </div>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <p>What other's say About Us</p>
-    <!-- <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button> -->
+    <p style="background-color: goldenrod" *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <div (click)="showFiller = !showFiller" >
+      Doing a Great job!!
+    </div>
   </mat-drawer>
 </mat-drawer-container>

@@ -14,6 +14,7 @@ export class NgoViewComponent implements OnInit {
   mainScreen: boolean = true;
   subScreens: boolean = false;
   breakpoint: any;
+  donateForm:boolean  = false
 
 
   constructor() { }
@@ -30,5 +31,12 @@ export class NgoViewComponent implements OnInit {
     this.breakpoint = (event.target.innerWidth <= 414) ? 1 : 3;
   }
 
+  donateClicked(){
+    this.donateForm = true;
+  }
+
+  onClose(){
+    this.donateForm = false;
+  }
 
 }
