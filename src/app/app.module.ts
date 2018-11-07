@@ -20,6 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NGOListService } from './ngo-list/ngo-list.component.service';
 import { NgoMatoDataService } from './shared/ngoMatoDataService.service';
+import { HistoryService } from './../app/history/history.component.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { NgoMatoDataService } from './shared/ngoMatoDataService.service';
     MatSnackBarModule,
     MatProgressBarModule
   ],
-  providers: [MatDialog, NGOListService, NgoMatoDataService],
+  providers: [MatDialog, NGOListService, NgoMatoDataService, HistoryService],
   entryComponents: [DialogBox],
   bootstrap: [AppComponent]
 })

@@ -159,7 +159,6 @@ export class NgoListComponent implements OnInit {
         console.log("oggedIn ", this.ngoMatoDataService.currentUser);
         donation.ngoId = this.donationForNGO.name;
         this.ngoListService.createDonationFromUser(donation).subscribe((json) => {
-          console.log("result ", json);
         });
       });
 
