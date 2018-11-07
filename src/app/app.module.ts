@@ -21,6 +21,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NGOListService } from './ngo-list/ngo-list.component.service';
 import { NgoMatoDataService } from './shared/ngoMatoDataService.service';
 import { HistoryService } from './../app/history/history.component.service';
+import { AdminService } from './admin/admin.component.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { HistoryService } from './../app/history/history.component.service';
     MatSnackBarModule,
     MatProgressBarModule
   ],
-  providers: [MatDialog, NGOListService, NgoMatoDataService, HistoryService],
+  providers: [MatDialog, NGOListService, NgoMatoDataService, HistoryService, AdminService],
   entryComponents: [DialogBox],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HistoryService } from './history.component.service';
+import { NgoMatoDataService } from './../shared/ngoMatoDataService.service';
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
@@ -7,11 +8,15 @@ import { HistoryService } from './history.component.service';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor(private historyService: HistoryService) { }
+  constructor(private historyService: HistoryService, private ngoMatoDatService: NgoMatoDataService) { }
 
   ngOnInit() {
+    this.getHistory();
+  }
 
-    this.historyService.fetchDonationStatus("prakhar").subscribe((data) => {
+  getHistory() {
+    this.historyService.fetchDonationStatus(this.ngoMatoDatService.currentUser).subscribe((data) => {
+
       console.log("history ", data);
     });
   }
