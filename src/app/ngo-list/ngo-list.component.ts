@@ -3,6 +3,8 @@ import { NgoService } from '../ngo.service';
 import { Ngo } from '../shared/ngo.class';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
+import { NGOListService } from './ngo-list.component.service';
+import { Donation } from './../shared/classes/donation.class';
 
 export interface DialogData {
   description: string;
@@ -41,7 +43,7 @@ export class NgoListComponent implements OnInit {
   oldValueOFCitySelected: string = "";
   breakpoint: any;
 
-  constructor(private _ngoApi: NgoService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+  constructor(private _ngoApi: NgoService, private ngoListService: NGOListService, public dialog: MatDialog, public snackBar: MatSnackBar) {
     this.makeImagePathList();
   }
 
@@ -146,8 +148,17 @@ export class NgoListComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
+
         this.description = result.description;
         this.requirement = result.requirement;
+        let donation: Donation = new Donation();
+        donation.description = this.description;
+        donation.requirement = this.requirement;
+        donation.userId = "abhay447";
+        donation.ngoId = this.donationForNGO.name;
+        this.ngoListService.createDonationFromUser(donation).subscribe((json) => {
+          console.log("result ", json);
+        });
       });
 
     } else {
