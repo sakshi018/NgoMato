@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { NgoMatoDataService } from './../shared/ngoMatoDataService.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -27,14 +28,11 @@ export class LoginSignupComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-
-
-
   @Output() loginModalClosed: EventEmitter<any> = new EventEmitter();
   @Output() loginModalEvent: EventEmitter<any> = new EventEmitter();
-  @Input() launchSingUpId:any;
+  @Input() launchSingUpId: any;
 
-  constructor(public snackBar: MatSnackBar) {
+  constructor(public snackBar: MatSnackBar, private ngoMatoDataService: NgoMatoDataService) {
     this.credentials = new Map<string, string>();
     this.credentials['sakshi'] = 'ngo1';
     this.credentials['prakhar'] = 'ngo2';
@@ -49,17 +47,19 @@ export class LoginSignupComponent implements OnInit {
   }
 
   loginClicked() {
-    
+
     //service call to verify user credentials is made
     if (this.credentials[this.username] == this.password) {
       //loginSuccessfull
-      this.openSnackBar("Login SuccessFul","");
+      this.openSnackBar("Login SuccessFul", "");
       this.loginModalEvent.emit(this.username);
+      this.ngoMatoDataService.currentUser = this.username;
     }
     else {
       //loginFailed
-      this.openSnackBar("LoginFailed","Try Again");
-      this.loginModalEvent.emit('LoginFailed')
+      this.openSnackBar("LoginFailed", "Try Again");
+      this.loginModalEvent.emit('LoginFailed');
+      this.ngoMatoDataService.currentUser = "LoginFailed";//NoUser
     }
   }
 

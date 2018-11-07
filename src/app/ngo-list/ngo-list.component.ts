@@ -5,11 +5,12 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
 import { NGOListService } from './ngo-list.component.service';
 import { Donation } from './../shared/classes/donation.class';
+import { NgoMatoDataService } from './../shared/ngoMatoDataService.service';
 
 export interface DialogData {
   description: string;
   requirements: string[];
-  requirement: string;//it corresponds to requirement selected by user on daonation
+  requirement: string;//it corresponds to requirement selected by oggedIn  , on daonation
   contactNumber: number;
   address: string;
   ngo: Ngo;
@@ -43,7 +44,7 @@ export class NgoListComponent implements OnInit {
   oldValueOFCitySelected: string = "";
   breakpoint: any;
 
-  constructor(private _ngoApi: NgoService, private ngoListService: NGOListService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+  constructor(private _ngoApi: NgoService, private ngoMatoDataService: NgoMatoDataService, private ngoListService: NGOListService, public dialog: MatDialog, public snackBar: MatSnackBar) {
     this.makeImagePathList();
   }
 
@@ -137,7 +138,7 @@ export class NgoListComponent implements OnInit {
 
   modalClicked(ngoClickedForDonation: Ngo): void {
 
-    if (this.userLoggedIn) {//launching donation Modal only if user is logged in
+    if (this.userLoggedIn) {//launching donation Modal only if oggedIn  , is logged in
 
       this.donationForNGO = ngoClickedForDonation;
       this.requirements = ngoClickedForDonation.requirements;
@@ -154,7 +155,8 @@ export class NgoListComponent implements OnInit {
         let donation: Donation = new Donation();
         donation.description = this.description;
         donation.requirement = this.requirement;
-        donation.userId = "abhay447";
+        donation.userId = this.ngoMatoDataService.currentUser;
+        console.log("oggedIn ", this.ngoMatoDataService.currentUser);
         donation.ngoId = this.donationForNGO.name;
         this.ngoListService.createDonationFromUser(donation).subscribe((json) => {
           console.log("result ", json);
@@ -171,7 +173,7 @@ export class NgoListComponent implements OnInit {
 
   checkIfUserIsLoggedIn(loggedInUser: string) {
     if (loggedInUser != 'admin' && loggedInUser != 'LoginFailed') {
-      //some user is logged in
+      //some oggedIn  , is logged in
       this.userLoggedIn = true;
     } else {
       this.userLoggedIn = false;

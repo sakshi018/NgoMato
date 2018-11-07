@@ -19,6 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NGOListService } from './ngo-list/ngo-list.component.service';
+import { NgoMatoDataService } from './shared/ngoMatoDataService.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { NGOListService } from './ngo-list/ngo-list.component.service';
     MatSnackBarModule,
     MatProgressBarModule
   ],
-  providers: [MatDialog, NGOListService],
+  providers: [MatDialog, NGOListService, NgoMatoDataService],
   entryComponents: [DialogBox],
   bootstrap: [AppComponent]
 })
